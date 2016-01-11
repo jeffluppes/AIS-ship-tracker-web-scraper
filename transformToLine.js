@@ -15,7 +15,8 @@ geoJSON.features.forEach(function(element) {
     element.geometry.type = "LineString";
     element.type = "Feature";
     counter++;     
-    delete element.sensors;
+    delete element.sensors.pastCoordinates;
+    // its nice to preserve historical data about speed, hence no removal of the complete sensors object.
 });
 
 fs.writeFile(result, JSON.stringify(geoJSON), function(err) {
