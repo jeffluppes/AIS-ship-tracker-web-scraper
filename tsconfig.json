@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "noLib": false,
+        "sourceMap": true,
+        "outDir": "./js"
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts",
+        "!./node_modules/**/*.d.ts",
+        "!./public/bower_components/**/*.d.ts"
+    ],
+    "files": [
+        "./server.ts",
+        "./typings/async/async.d.ts",
+        "./typings/form-data/form-data.d.ts",
+        "./typings/node/node.d.ts",
+        "./typings/request/request.d.ts",
+        "./typings/tsd.d.ts"
+    ],
+    "exclude": []
+}
