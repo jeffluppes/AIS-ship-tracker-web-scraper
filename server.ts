@@ -156,7 +156,7 @@ succesfulTries =0;
 failedTries =0;
 // settings
 url = "http://www.myshiptracking.com/requests/vesselsonmap.php?type=json&minlat=50.5&maxlat=53.9&minlon=3.27&maxlon=7.21&zoom=9&mmsi=null&timecode=0";
-refreshRate = 10000; // milliseconds
+refreshRate = 60000; // milliseconds
 
 // calling init every time seems pretty silly, would rather do this inside init
 fetcher.init(url);

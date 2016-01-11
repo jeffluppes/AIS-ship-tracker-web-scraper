@@ -3,14 +3,12 @@ var request = require('request');
 var fs = require('fs');
 var colors = require('colors');
 /**
-*	This is a web scraper tool to collect data from Rijkswaterstaatstrooit. The code pulls an existing JSON document
+*	This is a web scraper tool to collect data from myshiptracker. The code pulls an existing JSON document
 *   from the web, parses it as GeoJSON and updates it every x seconds.
-*	For more information see the Common Sense project by TNO, the Dutch Institute for Applied Scientific Research.
-*	https://github.com/TNOCS/csWeb
 */
 //------------------------- GeoJSON --------------------
 /**
- * Geojson definition
+ * Geojson definition (not completely used)
  */
 var FeatureCollection = (function () {
     function FeatureCollection() {
@@ -55,6 +53,9 @@ var Sensors = (function () {
     return Sensors;
 })();
 exports.Sensors = Sensors;
+/**
+ * Definitions for our input data
+ */
 var Ships = (function () {
     function Ships() {
     }
@@ -153,7 +154,7 @@ succesfulTries = 0;
 failedTries = 0;
 // settings
 url = "http://www.myshiptracking.com/requests/vesselsonmap.php?type=json&minlat=50.5&maxlat=53.9&minlon=3.27&maxlon=7.21&zoom=9&mmsi=null&timecode=0";
-refreshRate = 10000; // milliseconds
+refreshRate = 60000; // milliseconds
 // calling init every time seems pretty silly, would rather do this inside init
 fetcher.init(url);
 setInterval(function () { fetcher.init(url); }, refreshRate);
