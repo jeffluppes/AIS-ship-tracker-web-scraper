@@ -6,5 +6,7 @@ The tool looks for a specified url, parses it to JSON, does a little bit of vood
 
 ## Files
 - server.ts: script
-- wagens.json: example of the resulting data
-
+- js/server.js: compiled version of the script executable as JavaScript
+- transformToLine.js: A small script to transform the point data into LineStrings, so that the travel path of each vessel becomes visible.
+- ships.json: example of the resulting data
+- ships_result.json: example of the resulting data after using transformToLine.js
