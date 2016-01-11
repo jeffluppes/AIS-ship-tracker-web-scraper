@@ -5,17 +5,15 @@ import fs = require('fs');
 import colors = require('colors');
 
 /**
-*	This is a web scraper tool to collect data from Rijkswaterstaatstrooit. The code pulls an existing JSON document
+*	This is a web scraper tool to collect data from myshiptracker. The code pulls an existing JSON document
 *   from the web, parses it as GeoJSON and updates it every x seconds. 
-*	For more information see the Common Sense project by TNO, the Dutch Institute for Applied Scientific Research. 
-*	https://github.com/TNOCS/csWeb
 */
 
 
 //------------------------- GeoJSON --------------------
 
 /**
- * Geojson definition
+ * Geojson definition (not completely used)
  */
 export class FeatureCollection {
     public type: string;
@@ -55,6 +53,10 @@ export class Sensors {
     public SOG: number[];
 }
 
+
+/**
+ * Definitions for our input data
+ */
 export class Ships {
     public DATA: Ship[];
 }
