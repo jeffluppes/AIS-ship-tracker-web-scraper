@@ -98,12 +98,29 @@ var fetchData = (function () {
                     //not dealing with a fresh file, so we can assume the sensors already exist!
                     // So what would be cool to collect? How about coordinates and speed?
                     ships.DATA.forEach(function (s) {
+                        var encountered = false;
                         geoJSON.features.forEach(function (f) {
                             if (s.MMSI === f.Id) {
                                 f.sensors.pastCoordinates.push([Number(s.LNG), Number(s.LAT)]);
                                 f.sensors.SOG.push(s.SOG);
+                                encountered = true;
                             }
                         });
+                        if (!encountered) {
+                            var f = new Feature();
+                            f.Id = s.MMSI;
+                            f.type = "Feature";
+                            f.geometry = new Geometry();
+                            f.properties = new Properties();
+                            f.properties.Name = s.NAME;
+                            f.properties.MMSI = s.MMSI;
+                            f.geometry.type = "Point";
+                            f.geometry.coordinates = [Number(s.LNG), Number(s.LAT)];
+                            f.sensors = new Sensors();
+                            f.sensors.pastCoordinates = [f.geometry.coordinates];
+                            f.sensors.SOG = [s.SOG];
+                            geoJSON.features.push(f);
+                        }
                     });
                     geoJSON.timestamps.push(Date.now());
                 }
@@ -131,7 +148,7 @@ var fetchData = (function () {
                         throw err;
                     succesfulTries++;
                     console.log("Data has been saved to disk!");
-                    console.log(colors.green(geoJSON.features.length + " features were collected. Total success: " + succesfulTries + ", total err: " + failedTries));
+                    console.log(colors.green(ships.DATA.length + " features were collected or updated. Total success: " + succesfulTries + ", total err: " + failedTries));
                     console.timeEnd("Exectime");
                 });
             });
